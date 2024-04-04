@@ -12,6 +12,7 @@ import com.otothang.models.CustomUserDetails;
 import com.otothang.models.Product;
 import com.otothang.models.SearchModel;
 import com.otothang.models.User;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
@@ -115,7 +118,7 @@ public class HomeController {
 		List<Blog> blog=this.blogService.getAll();
 		model.addAttribute("blog", blog);
 		if (principal == null) {
-			return "/user/login";
+			return "/user/Login";
 		}
 		CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
@@ -166,4 +169,18 @@ public class HomeController {
 		model.addAttribute("errorMessage", "Bạn không có quyền truy cập vào trang admin.");
 		return "index";
 	}
+	@RequestMapping("/chatnay")
+	public String index( Model model ,Principal principal) {
+		if (principal == null) {
+			return "/user/Login";
+		}
+		CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		User user = customUserDetails.getUser();
+		model.addAttribute("user", user);
+
+		return "chat";
+	}
+
+
 }

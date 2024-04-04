@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+#username-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền với độ mờ */
+}
+
+.username-page-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.accent {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#acchat-page {
+    display: none;
+}
+
+.chat-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chat-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.connecting {
+    text-align: center;
+    font-style: italic;
+}
+
+#messageArea {
+    list-style-type: none;
+    padding: 0;
+}
+
+#messageArea li {
+    margin-bottom: 10px;
+}
+
+.input-group1 {
+    display: flex;
+}
+
+.input-group input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+.input-group button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+
+#chat-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+
+    height: 1000px;/* Điều chỉnh độ rộng của phần chat */
+}
+.chat-container{
+    height: 350px;
+    margin-top: 250px;
+}
+#messageForm{
+    margin-top: 60px;
+}
+.textName{
+    width: 97%;
+}
