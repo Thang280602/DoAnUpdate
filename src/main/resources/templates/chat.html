@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 <head>
     <title>Spring Boot WebSocket</title>
     <link rel="stylesheet" th:href="@{/css/chatmain.css}" />
@@ -15,7 +15,7 @@
     <div class="chat-header">
         <div class="user-container" th:object="${user}">
             <span id="username"  th:utext="${user.userName}"></span>
-            <a th:href="@{/}">Logout</a>
+            <a th:href="@{/}">Exits</a>
         </div>
         <h3>Spring WebSocket Chat Demo</h3>
     </div>
@@ -25,12 +25,12 @@
     <div id="connecting">Connecting...</div>
     <ul id="messageArea">
     </ul>
-    <form id="messageForm" name="messageForm">
+    <form role="form" id="messageForm" name="messageForm" th:object="${chat1}" th:action="@{/chat/chatnay}" method="post" enctype="multipart/form-data">
         <div class="input-message">
             <input type="text" id="message" autocomplete="off"
-                   placeholder="Type a message..."/>
-            <button type="submit">Send</button>
+                   placeholder="Type a message..." th:field="*{content}"/>
         </div>
+        <button type="submit">Send</button>
     </form>
 </div>
 
