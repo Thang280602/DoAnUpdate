@@ -14,6 +14,8 @@ public class UserServiceIpml implements UserService {
 	@Autowired
 	private Repository userRepository;
 	@Autowired
+	private UserRepository userRepository1;
+	@Autowired
 	private UserRepository repository;
 	@Override
 	public User findByUserName(String userName) {
@@ -41,6 +43,20 @@ public class UserServiceIpml implements UserService {
 		this.repository.updateUserById(userId, newUsername, newEmail, newPhone, newAddress);
 		
 	}
+
+	@Override
+	public void processOAuthPostLogin(String username) {
+		User existUser = userRepository1.getUserByUsername(username);
+
+		if (existUser == null) {
+			User newUser = new User();
+			newUser.setUserName(username);
+			newUser.setProvider(User.Provider.GOOGLE);
+			newUser.setEnabled(true);
+			userRepository1.save(newUser);
+		}
+	}
+
 	@Override
 	public List<User> getALL() {
 		

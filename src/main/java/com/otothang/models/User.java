@@ -1,10 +1,13 @@
 package com.otothang.models;
 
 
+import java.security.Provider;
 import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,6 +38,13 @@ public class User {
 	private String email;
 	@Column(name = "telephone")
 	private String telephone;
+	@Column(name="provider")
+	@Enumerated(EnumType.STRING)
+	private Provider provider;
+
+	public enum Provider {
+		LOCAL, GOOGLE
+	}
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private Set<User_Role> userRoles;
 	@OneToMany(mappedBy = "user")
@@ -42,6 +52,8 @@ public class User {
 	public User() {
 		super();
 	}
+
+
 
 	public User(Long id, String userName, String passWord, Boolean enabled, String fullName, Boolean gender, String address, String email, String telephone, Set<User_Role> userRoles, Set<Chat> chats) {
 		this.id = id;
@@ -55,6 +67,14 @@ public class User {
 		this.telephone = telephone;
 		this.userRoles = userRoles;
 		this.chats = chats;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
 	public Long getId() {
