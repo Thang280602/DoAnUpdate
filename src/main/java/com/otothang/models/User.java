@@ -41,7 +41,8 @@ public class User {
 	@Column(name="provider")
 	@Enumerated(EnumType.STRING)
 	private Provider provider;
-
+	@Column(name = "verification_code", length = 64)
+	private String verificationCode;
 	public enum Provider {
 		LOCAL, GOOGLE
 	}
@@ -54,8 +55,7 @@ public class User {
 	}
 
 
-
-	public User(Long id, String userName, String passWord, Boolean enabled, String fullName, Boolean gender, String address, String email, String telephone, Set<User_Role> userRoles, Set<Chat> chats) {
+	public User(Long id, String userName, String passWord, Boolean enabled, String fullName, Boolean gender, String address, String email, String telephone, Provider provider, String verificationCode, Set<User_Role> userRoles, Set<Chat> chats) {
 		this.id = id;
 		this.userName = userName;
 		this.passWord = passWord;
@@ -65,8 +65,18 @@ public class User {
 		this.address = address;
 		this.email = email;
 		this.telephone = telephone;
+		this.provider = provider;
+		this.verificationCode = verificationCode;
 		this.userRoles = userRoles;
 		this.chats = chats;
+	}
+
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
 	}
 
 	public Provider getProvider() {

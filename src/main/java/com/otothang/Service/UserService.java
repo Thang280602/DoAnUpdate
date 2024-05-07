@@ -1,7 +1,10 @@
 package com.otothang.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import com.otothang.models.Order;
+import jakarta.mail.MessagingException;
 import org.springframework.data.repository.query.Param;
 
 import com.otothang.models.User;
@@ -13,4 +16,8 @@ public interface UserService {
 	User create1(User user);
 	void updateUserById(Long userId,String newUsername,  String newEmail, String newPhone, String newAddress);
 	void processOAuthPostLogin(String username);
+	void register(User user, String siteURL) throws UnsupportedEncodingException, MessagingException;
+	void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException;
+	boolean verify(String verificationCode);
+	void sendOrderConfirmationEmail(User user, Order order, String siteURL) throws MessagingException, UnsupportedEncodingException;
 }

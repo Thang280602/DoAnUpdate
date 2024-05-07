@@ -1,12 +1,20 @@
 package com.otothang.controllers.payment;
 
+
+import com.otothang.Service.OrderDetailSevice;
+import com.otothang.Service.OrderSevice;
 import com.otothang.config.PayConfig;
+import com.otothang.models.Order;
+import com.otothang.models.OrderDetail;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -20,14 +28,20 @@ import java.util.Map;
 import java.util.TimeZone;
 
 @RestController
-public class PayController {
-    @GetMapping("/pay")
-    public void getPay(HttpServletResponse response) throws UnsupportedEncodingException {
+public class PayABC {
+    @Autowired
+    private OrderSevice orderSevice;
+    @Autowired
+    private OrderDetailSevice orderDetailSevice;
 
+    @GetMapping("/pay/{id}")
+    public String getPay(HttpServletResponse response, @PathVariable("id") Integer id) throws UnsupportedEncodingException {
+        Order order = this.orderSevice.findById(id);
+        List<OrderDetail> orderDetails = this.orderDetailSevice.getByOrderId(order);
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
-        long amount = 10000 * 100;
+        long amount = calculateTotalAmount(orderDetails).longValue()*100;
         String bankCode = "NCB";
 
         String vnp_TxnRef = PayConfig.getRandomNumber(8);
@@ -40,8 +54,7 @@ public class PayController {
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
         vnp_Params.put("vnp_Amount", String.valueOf(amount));
-        vnp_Params.put("vnp_CurrCode", "VND");
-
+        vnp_Params.put("vnp_CurrCode", "USD");
         vnp_Params.put("vnp_BankCode", bankCode);
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
         vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
@@ -60,7 +73,7 @@ public class PayController {
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
 
-        List fieldNames = new ArrayList<>(vnp_Params.keySet());
+        List fieldNames = new ArrayList(vnp_Params.keySet());
         Collections.sort(fieldNames);
         StringBuilder hashData = new StringBuilder();
         StringBuilder query = new StringBuilder();
@@ -93,6 +106,16 @@ public class PayController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return "redirect:/success" +order.getId();
+    }
+
+    private BigDecimal calculateTotalAmount(List<OrderDetail> orderDetails) {
+        // Tính tổng số tiền của các đơn hàng
+        BigDecimal total = BigDecimal.ZERO;
+        for (OrderDetail orderDetail : orderDetails) {
+            BigDecimal price = BigDecimal.valueOf(orderDetail.getPrice()*orderDetail.getQuantity());
+            total = total.add(price);
+        }
+        return total;
     }
 }
-

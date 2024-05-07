@@ -17,6 +17,7 @@ import com.otothang.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +45,10 @@ public class HomeController {
     private BlogService blogService;
     @Autowired
     private CommentSevice commentSevice;
-
+    @GetMapping("/success/{id}")
+    public String returnHome(@PathVariable("id") Integer id){
+        return "index";
+    }
     @RequestMapping("")
     public String home(Model model, Principal principal) {
         List<Category> categories = categorySevice.findByCategoryStatus(true);

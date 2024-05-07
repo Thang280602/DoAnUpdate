@@ -1,11 +1,16 @@
 package com.otothang.controllers.user;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,15 +46,24 @@ public class UserLoginController {
 		model.addAttribute("listCate", categories);
 		List<Blog> blog=this.blogService.getAll();
 		model.addAttribute("blog", blog);
-;		return "/user/register";
+		return "/user/register";
 	}
 	@PostMapping("/register")
-	public String doRegister(@ModelAttribute("user") User user) {
-		String hasPass= new BCryptPasswordEncoder().encode(user.getPassWord());
-		user.setPassWord(hasPass);
-		user.setEnabled(true);
-		this.userService.create(user);
+	public String doRegister(@ModelAttribute("user") User user,HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
+		userService.register(user, getSiteURL(request));
+		return "/user/Login";
+	}
+	@GetMapping("/verify")
+	public String verifyUser(@Param("code") String code ,Model model) {
 
-		return "/user/login";
+		if (userService.verify(code)) {
+			return "redirect:/register";
+		} else {
+			return "/user/Login";
+		}
+	}
+	private String getSiteURL(HttpServletRequest request) {
+		String siteURL = request.getRequestURL().toString();
+		return siteURL.replace(request.getServletPath(), "");
 	}
 }

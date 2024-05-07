@@ -2,12 +2,13 @@ package com.otothang.Service;
 
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.otothang.Repository.OrderRepository;
 import com.otothang.models.Order;
-
+@Transactional
 @Service
 public class OrderSeviceImpl implements OrderSevice{
 	@Autowired
@@ -24,9 +25,9 @@ public class OrderSeviceImpl implements OrderSevice{
 			this.orderRepository.save(Order);
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace(); // Log lỗi
+			throw new RuntimeException("Failed to create order: " + e.getMessage()); // Ném ra ngoại lệ với thông báo lỗi
 		}
-		return false;
 	}
 
 	@Override
@@ -34,5 +35,6 @@ public class OrderSeviceImpl implements OrderSevice{
 		// TODO Auto-generated method stub
 		return this.orderRepository.findById(id).get();
 	}
+
 
 }
