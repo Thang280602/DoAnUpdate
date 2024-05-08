@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -108,7 +109,10 @@ public class PayABC {
         }
         return "redirect:/success" +order.getId();
     }
-
+    @RequestMapping("/success/{id}")
+    public String Build(@PathVariable("id") Integer id){
+        return "/index";
+    }
     private BigDecimal calculateTotalAmount(List<OrderDetail> orderDetails) {
         // Tính tổng số tiền của các đơn hàng
         BigDecimal total = BigDecimal.ZERO;

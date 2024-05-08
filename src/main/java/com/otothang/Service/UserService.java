@@ -15,7 +15,7 @@ public interface UserService {
 	Boolean create(User user);
 	User create1(User user);
 	void updateUserById(Long userId,String newUsername,  String newEmail, String newPhone, String newAddress);
-	void processOAuthPostLogin(String username);
+	void processOAuthPostLogin(String username ,String email);
 	void register(User user, String siteURL) throws UnsupportedEncodingException, MessagingException;
 	void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException;
 	boolean verify(String verificationCode);

@@ -1,7 +1,8 @@
 package com.otothang;
 
+
 import com.otothang.Service.CustomOAuth2UserService;
-import com.otothang.Service.CustomUserDetailService;
+//import com.otothang.Service.CustomUserDetailService;
 import com.otothang.Service.UserService;
 import com.otothang.customOAuth2.CustomOAuth2User;
 import jakarta.servlet.ServletException;
@@ -25,8 +26,9 @@ import java.io.IOException;
 public class SecurityConfig {
     @Autowired
     private UserService userService;
+
     @Autowired
-    private CustomUserDetailService customUserDetailService;
+    private CustomOAuth2UserService oauthUserService;
 
     //	@Bean
 //	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -53,8 +55,8 @@ public class SecurityConfig {
 //	}
 
 
-    @Autowired
-    private CustomOAuth2UserService oauthUserService;
+//    @Autowired
+//    private CustomOAuth2UserService oauthUserService;
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -93,8 +95,8 @@ public class SecurityConfig {
                                                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                                                                         Authentication authentication) throws IOException, ServletException {
                                                         CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-                                                        userService.processOAuthPostLogin(oauthUser.getEmail());
-                                                        response.sendRedirect("/list");
+                                                        userService.processOAuthPostLogin(oauthUser.getEmail() ,oauthUser.getName());
+                                                        response.sendRedirect("/");
                                                     }
                                                 }
                                 )

@@ -1302,8 +1302,46 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<h3>Get in touch using the form below</h3>
+					<h2>Check your order</h2>
+					<div class="your-order mb-30 ">
+						<div class="your-order-table table-responsive">
+							<table>
+								<thead>
+								<tr>
+									<th class="product-name">Product</th>
+									<th class="product-total">Total</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr class="cart_item" th:each="card:${listCard.cardItems}">
+									<td class="product-name">
+                                       <span
+											   th:text="${card.product.productName}"></span><strong
+											class="product-quantity"> ×<span
+											th:text="${card.quantity}"></span> </strong>
+									</td>
+									<td class="product-total">
+                                            <span class="amount"><span
+													th:text="'$ '+ ${card.product.price * card.quantity}"></span>
+									</td>
+								</tr>
+
+								</tbody>
+								<tfoot>
+
+								<tr class="order-total">
+									<th>Order Total</th>
+									<td><strong><span class="amount" th:text="'$ '+ ${total}"></span></strong>
+									</td>
+								</tr>
+								</tfoot>
+							</table>
+						</div>
+
+
+					</div>
 					<div class="contact_form gray-bg">
+						<h3 style="">Customer information</h3>
 						<form th:action="@{/postCheckout}" method="post" th:oject="${order}">
 							<div class="form-group">
 								<label class="control-label">Full Name <span>*</span></label>
@@ -1326,14 +1364,14 @@
 								<textarea class="form-control custom-height white_bg" rows="4"></textarea>
 							</div>
 							<div class="form-group">
-								<button class="btn" type="submit">Send Message <span class="angle_arrow"><i
-											class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+								<button class="btn" type="submit" name="paymentMethod" value="online"> Online payment </button>
+								<button class="btn" type="submit" name="paymentMethod" value="delivery" style="margin-left: 36%"> Payment on delivery </button>
 							</div>
 						</form>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<h3>Contact Info</h3 >
+					<h2>Contact Info</h2 >
 					<div class="contact_detail" th:each="infor:${infor}">
 						<ul>
 							<li>
@@ -1348,7 +1386,7 @@
 							<li>
 								<div class="icon_wrap"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
 								<div class="contact_info_m"><a
-										href="mailto:dhtcntt03@gmail.com"><span th:text="${infor.email}"></span>m</a></div>
+										href="mailto:dhtcntt03@gmail.com"><span th:text="${infor.email}"></span></a></div>
 							</li>
 						</ul>
 						<div class="map_wrap">

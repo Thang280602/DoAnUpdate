@@ -1061,12 +1061,15 @@
 				<div class="">
 					<div class="listing_images">
 						<div class="">
-							<div style="text-align: center;"><img th:src="@{'/uploads/'+${pro.image}}" alt="image">
+							<div style="text-align: center;">
+								<img id="mainImage" th:src="@{'/uploads/'+${pro.image}}" alt="image">
 							</div>
-
 						</div>
+
 						<div class="listing_images_slider_nav">
-							<div th:each="imgpro:${imgDetail}"><img th:src="@{'/uploads/'+${imgpro}}" alt="image"></div>
+							<div th:each="imgpro:${imgDetail}">
+								<img class="thumbnailImage" th:src="@{'/uploads/'+${imgpro}}" alt="image">
+							</div>
 						</div>
 					</div>
 					<div class="main_features">
@@ -1097,212 +1100,7 @@
 							</li>
 						</ul>
 					</div>
-					<div class="listing_more_info">
-						<div class="listing_detail_wrap">
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-								<li class="nav-item" role="presentation"><a class="nav-link active" id="home-tab"
-										data-bs-toggle="tab" href="#home" role="tab" aria-controls="home"
-										aria-selected="true">Vehicle Overview </a></li>
-								<li class="nav-item" role="presentation"><a class="nav-link" id="Technical-tab"
-										data-bs-toggle="tab" href="#Technical" role="tab" aria-controls="Technical"
-										aria-selected="true">Technical Specification</a></li>
-								<li class="nav-item" role="presentation"><a class="nav-link" id="Accessories-tab"
-										data-bs-toggle="tab" href="#Accessories" role="tab" aria-controls="Accessories"
-										aria-selected="true">Accessories</a></li>
-								<li class="nav-item" role="presentation"><a class="nav-link" id="Location-tab"
-										data-bs-toggle="tab" href="#Location" role="tab" aria-controls="Location"
-										aria-selected="true">Location</a></li>
-							</ul>
 
-							<!-- Tab panes -->
-							<div class="tab-content" id="myTabContent">
-								<!-- vehicle-overview -->
-								<div role="tabpanel" class="tab-pane active" id="home" aria-labelledby="home-tab">
-									<h4>Do you know anything about Honda Civic?</h4>
-									<p th:utext="${pro.description}"></p>
-
-								</div>
-
-								<!-- Technical-Specification -->
-								<div role="tabpanel" class="tab-pane" id="Technical" aria-labelledby="Technical-tab">
-									<div class="table-responsive">
-										<!--Basic-Info-Table-->
-										<table>
-											<thead>
-												<tr>
-													<th colspan="2">BASIC INFO</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Model Year</td>
-													<td>2010</td>
-												</tr>
-												<tr>
-													<td>No. of Owners</td>
-													<td>4</td>
-												</tr>
-												<tr>
-													<td>KMs Driven</td>
-													<td>30,000</td>
-												</tr>
-												<tr>
-													<td>Fuel Type</td>
-													<td>Diesel</td>
-												</tr>
-											</tbody>
-										</table>
-
-										<!--Technical-Specification-Table-->
-										<table>
-											<thead>
-												<tr>
-													<th colspan="2">Technical Specification</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Engine Type</td>
-													<td>TDCI Diesel Engine</td>
-												</tr>
-												<tr>
-													<td>Engine Description</td>
-													<td>1.5KW</td>
-												</tr>
-												<tr>
-													<td>No. of Cylinders</td>
-													<td>4</td>
-												</tr>
-												<tr>
-													<td>Mileage-City</td>
-													<td>22.4kmpl</td>
-												</tr>
-												<tr>
-													<td>Mileage-Highway</td>
-													<td>25.83kmpl</td>
-												</tr>
-												<tr>
-													<td>Fuel Tank Capacity</td>
-													<td>40 (Liters)</td>
-												</tr>
-												<tr>
-													<td>Seating Capacity</td>
-													<td>5</td>
-												</tr>
-												<tr>
-													<td>Transmission Type</td>
-													<td>Manual</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-
-								<!-- Accessories -->
-								<div role="tabpanel" class="tab-pane" id="Accessories"
-									aria-labelledby="Accessories-tab">
-									<!--Accessories-->
-									<table>
-										<thead>
-											<tr>
-												<th colspan="2">Accessories</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Air Conditioner</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>AntiLock Braking System</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Power Steering</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Power Windows</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>CD Player</td>
-												<td><i class="fa fa-close" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Leather Seats</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Central Locking</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Power Door Locks</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Brake Assist</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Driver Airbag</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Passenger Airbag</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Crash Sensor</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Engine Check Warning</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-											<tr>
-												<td>Automatic Headlamps</td>
-												<td><i class="fa fa-check" aria-hidden="true"></i></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-
-								<!-- Location -->
-								<div role="tabpanel" class="tab-pane" id="Location" aria-labelledby="Location-tab">
-									<!--Location-->
-
-									<div class="map-directions">
-										<a href="https://www.google.com/maps?daddr=29.9499,-90.0701" target="_blank"><i
-												class="fa fa-map-o" aria-hidden="true"></i>Get Directions</a>
-									</div>
-
-									<iframe
-										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3457.0250189004205!2d-90.0722516224257!3d29.9499589749715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8620a6735bffcd91%3A0x37ff0f03807e9570!2sPan%20American%20Life%20Center%2C%20601%20Poydras%20St%2C%20New%20Orleans%2C%20LA%2070130%2C%20USA!5e0!3m2!1sen!2sin!4v1683886134849!5m2!1sen!2sin"
-										width="" height="350" style="border:0; width:100%" allowfullscreen=""
-										loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-								</div>
-
-							</div>
-						</div>
-
-						<!--Vehicle-Video-->
-						<div class="video_wrap">
-							<h6>Watch Video </h6>
-							<div class="video-box">
-								<iframe class="mfp-iframe" src="https://www.youtube.com/embed/_rxHKkCWPMU"
-									allowfullscreen></iframe>
-							</div>
-						</div>
-
-						<!--Comment-Form-->
-					
-						<!--/Comment-Form-->
-
-					</div>
 				</div>
 
 				<!--Side-Bar-->
@@ -1571,7 +1369,21 @@
 
 	<!-- Scripts -->
 	<script th:src="@{../../assetsuser/js/jquery.min.js}"></script>
+	<script>
+		// Lấy tất cả các thẻ <img> con trong phần listing_images_slider_nav
+		document.addEventListener('DOMContentLoaded', function() {
+			var thumbnailImages = document.querySelectorAll('.thumbnailImage');
 
+			// Lặp qua mỗi thẻ <img> con để thêm sự kiện click
+			thumbnailImages.forEach(function(thumbnailImage) {
+				thumbnailImage.addEventListener('click', function() {
+					// Khi một thẻ <img> được click, thay đổi src của ảnh chính thành src của thẻ <img> được click
+					var src = thumbnailImage.getAttribute('src');
+					document.getElementById('mainImage').setAttribute('src', src);
+				});
+			});
+		});
+	</script>
 
 
 	<script th:src="@{../../assetsuser/js/popper.min.js}"></script>

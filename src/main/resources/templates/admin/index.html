@@ -2,126 +2,130 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 
 <head th:replace="admin/fragments/head::head">
+    <!-- Thêm thư viện Chart.js -->
 
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
-	<!-- Site wrapper -->
-	<div class="wrapper">
+<!-- Site wrapper -->
+<div class="wrapper">
 
-		<div th:replace="admin/fragments/header::header"></div>
+    <div th:replace="admin/fragments/header::header"></div>
 
-		<!-- =============================================== -->
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="admin/fragments/aside::aside"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Area Chart</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                        class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <canvas id="areaChart" style="height: 400px; width: 100%;"></canvas>
+                            </div>
+                        </div>
 
-		<!-- Left side column. contains the sidebar -->
-		<div th:replace="admin/fragments/aside::aside"></div>
-		<!-- =============================================== -->
+                <div class="box-footer clearfix">
+                    <a th:href="@{/admin/order}" class="btn btn-sm btn-default btn-flat pull-right">View All
+                        Orders</a>
+                </div>
+            </div>
+        </section>
+        <!-- Main content -->
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<div class="box box-info">
-					<div class="box-header with-border">
-						<h3 class="box-title">Latest Orders</h3>
-						<div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-									class="fa fa-minus"></i>
-							</button>
-							<button type="button" class="btn btn-box-tool" data-widget="remove"><i
-									class="fa fa-times"></i></button>
-						</div>
-					</div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
-					<div class="box-body">
-						<div class="table-responsive">
-							<table class="table no-margin">
-								<thead>
-									<tr>
-										<th>Order ID</th>
-										<th>Item</th>
-										<th>Status</th>
-										<th>Quantity</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><a href="pages/examples/invoice.html">1</a></td>
-										<td>HuyndaiSatafe</td>
-										<td><span class="label label-warning">Chờ xác nhận</span></td>
-										<td><span>1</span></td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">1</a></td>
-										<td>HuyndaiSatafe</td>
-										<td><span class="label label-warning">Chờ xác nhận</span></td>
-										<td><span>1</span></td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">1</a></td>
-										<td>Honda Civic</td>
-										<td><span class="label label-info">Đang giao hàng</span></td>
-										<td><span>1</span></td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">1</a></td>
-										<td>Honda City</td>
-										<td><span class="label label-info">Đã giao hàng</span></td>
-										<td><span>1</span></td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">1</a></td>
-										<td>Ford Everest</td>
-										<td><span class="label label-warning">Chờ xác nhận</span></td>
-										<td><span>2</span></td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">1</a></td>
-										<td>Lambogini</td>
-										<td><span class="label label-success">Đã duyệt</span></td>
-										<td><span>1</span></td>
-									</tr>
-									<tr>
-										<td><a href="pages/examples/invoice.html">1</a></td>
-										<td>Toyota Vious</td>
-										<td><span class="label label-info">Đang giao hàng</span></td>
-										<td><span>1</span></td>
-									</tr>
-									
-								</tbody>
-							</table>
-						</div>
+</div>
+<div th:replace="admin/fragments/script::script"></div>
 
-					</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(function () {
+        var areaChartCanvas = $('#areaChart');
+        var areaChartData = {
+            labels: /*[[${chartData.labels}]]*/,
+            datasets: [{
+                label: 'Đơn hàng',
+                backgroundColor: 'rgba(210, 214, 222, 1)',
+                borderColor: 'rgba(210, 214, 222, 1)',
+                borderWidth: 1,
+                yAxisID: 'y-axis-1', // Sử dụng trục y thứ nhất
+                data: /*[[${chartData.totalOrdersData}]]*/,
+            },
+                {
+                    label: 'Tổng giá',
+                    backgroundColor: 'rgba(60,141,188,0.5)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    borderWidth: 1,
+                    yAxisID: 'y-axis-2',
+                    data: /*[[${chartData.totalPriceData}]]*/,
+                }
+            ]
+        };
 
-					<div class="box-footer clearfix">
-						
-						<a th:href="@{/admin/order}" class="btn btn-sm btn-default btn-flat pull-right">View All
-							Orders</a>
-					</div>
+        var areaChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: true
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-axis-1',
+                    ticks: {
+                        beginAtZero: true, // Bắt đầu từ giá trị 0
+                        stepSize: 1 // Đặt bước cho giá trị trục y là 1
+                    }
+                },
+                    {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        id: 'y-axis-2',
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return '$' + value;
+                            }
+                        }
+                    }]
+            }
+        };
+        var areaChart = new Chart(areaChartCanvas, {
+            type: 'line',
+            data: areaChartData,
+            options: areaChartOptions
+        });
+    });
+    /*]]>*/
+</script>
 
-				</div>
-			</section>
-
-			<!-- Main content -->
-			<section class="content">
-
-				<!-- Default box -->
-				<!-- /.box-footer-->
-		</div>
-		<!-- /.box -->
-
-		</section>
-		<!-- /.content -->
-	</div>
-	<!-- /.content-wrapper -->
-
-	<div th:replace="admin/fragments/footer::footer"></div>
-
-	</div>
-
-	<div th:replace="admin/fragments/script::script"></div>
-
+<script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</script>
 </body>
 
 </html>

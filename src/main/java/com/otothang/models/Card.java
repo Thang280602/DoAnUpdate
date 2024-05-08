@@ -52,5 +52,11 @@ public class Card {
 	public void setCardItems(Set<CardItem> cardItems) {
 		this.cardItems = cardItems;
 	}
-	
+	public Double totalPrice(){
+		Double total =0.0;
+		for(CardItem cardItem :cardItems){
+			total +=cardItem.getQuantity()*cardItem.getProduct().getPrice();
+		}
+		return total;
+	}
 }

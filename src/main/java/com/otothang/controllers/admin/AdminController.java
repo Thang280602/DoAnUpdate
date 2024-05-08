@@ -16,15 +16,7 @@ import com.otothang.models.User;
 public class AdminController {
 	@Autowired
 	private UserService service;
-	@GetMapping
-	public String index() {
-		return "redirect:/admin/";
-	}
 
-	@RequestMapping("/")
-	public String admin() {
-		return "admin/index";
-	}
 	@RequestMapping("/account")
 	public String Accout(Model model) {
 		List<User> user=this.service.getALL();

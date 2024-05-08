@@ -32,10 +32,13 @@ public class Order {
 	private Integer status;
 	@Column(name ="createAt")
 	private Date createAt;
+	@Column(name ="totalprice")
+	private Double totalprice;
+
 	public Order() {
 		super();
 	}
-	public Order(Integer id, User user, String addressShip, String phone, Integer status, Date createAt) {
+	public Order(Integer id, User user, String addressShip, String phone, Integer status, Date createAt,Double totalprice) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -43,7 +46,17 @@ public class Order {
 		this.phone = phone;
 		this.status = status;
 		this.createAt = createAt;
+		this.totalprice=totalprice;
 	}
+
+	public Double getTotalprice() {
+		return totalprice;
+	}
+
+	public void setTotalprice(Double totalprice) {
+		this.totalprice = totalprice;
+	}
+
 	public Integer getId() {
 		return id;
 	}

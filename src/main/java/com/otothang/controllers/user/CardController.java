@@ -80,10 +80,11 @@ public class CardController {
 			CardItem checkCardItem = this.cardItemSevice.checkCardItem(cardItem.getCard().getId(), idProduct);
 			if (checkCardItem != null) {
 				checkCardItem.setQuantity(checkCardItem.getQuantity() + 1);
-				this.cardItemSevice.updateCard(checkCardItem.getQuantity());
+				this.cardItemSevice.add(checkCardItem);
 			} else {
 				cardItem.setProduct(this.productSevice.findById(idProduct));
-				cardItem.setQuantity(1); // Đặt quantity thành 1 ban đầu
+				cardItem.setQuantity(1);
+				cardItem.setCard(card1);// Đặt quantity thành 1 ban đầu
 				this.cardItemSevice.add(cardItem);
 			}
 

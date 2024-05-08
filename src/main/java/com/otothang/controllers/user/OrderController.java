@@ -1,40 +1,22 @@
 package com.otothang.controllers.user;
 
-import java.io.IOException;
-import java.security.Principal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import com.lowagie.text.DocumentException;
-import com.otothang.Service.InformationShopSevice;
-import com.otothang.models.InformationShop;
-import jakarta.servlet.http.HttpServletResponse;
+import com.otothang.Service.*;
+import com.otothang.models.*;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.otothang.Service.BlogService;
-import com.otothang.Service.CardItemSevice;
-import com.otothang.Service.CardSevice;
-import com.otothang.Service.CategorySevice;
-import com.otothang.Service.OrderDetailSevice;
-import com.otothang.Service.OrderSevice;
-import com.otothang.Service.ProductSevice;
-import com.otothang.models.Blog;
-import com.otothang.models.Card;
-import com.otothang.models.CardItem;
-import com.otothang.models.Category;
-import com.otothang.models.CustomUserDetails;
-import com.otothang.models.Order;
-import com.otothang.models.OrderDetail;
+import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class OrderController {
@@ -44,6 +26,8 @@ public class OrderController {
 	private CardSevice cardSevice;
 	@Autowired
 	private ProductSevice productSevice;
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private OrderSevice orderSevice;
 	@Autowired
@@ -63,7 +47,7 @@ public class OrderController {
 				.getPrincipal();
 		Card card = this.cardSevice.findByUser(customUserDetails.getUser());
 		model.addAttribute("user", customUserDetails.getUser());
-		
+		model.addAttribute("total",card.totalPrice()) ;
 		model.addAttribute("listCard", card);
 		List<InformationShop> informationShops = informationShopSevice.getAll();
 		model.addAttribute("infor",informationShops);
@@ -78,16 +62,18 @@ public class OrderController {
 	}
 
 	@PostMapping("/postCheckout")
-	public String postCheckout(Model model,Principal principal, @ModelAttribute("order") Order order) {
+	public String postCheckout(Model model, Principal principal, @ModelAttribute("order") Order order , @RequestParam("paymentMethod") String paymentMethod , HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
 		if (principal == null) {
 			return "/user/login";
 		}
 		CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 		Card card = this.cardSevice.findByUser(customUserDetails.getUser());
+		model.addAttribute("total",card.totalPrice());
 		order.setUser(customUserDetails.getUser());
 		order.setCreateAt(new Date());
 		order.setStatus(0);
+		order.setTotalprice(card.totalPrice());
 		if (this.orderSevice.create(order)) {
 			for (CardItem cardItem : card.getCardItems()) {
 				OrderDetail orderDetail = new OrderDetail();
@@ -99,13 +85,38 @@ public class OrderController {
 
 			}
 		}
+		model.addAttribute("checkstatus",getStatusText(order.getStatus()));
+		model.addAttribute("card",card);
 		List<Category> categories1=categorySevice.getAll();
 		model.addAttribute("cate1", categories1);
 		this.cardItemSevice.deleteByCardId(card.getId());
 		List<Blog> blog=this.blogService.getAll();
 		model.addAttribute("blog", blog);
-
-		return "redirect:/pay/" + order.getId();
+		User user = customUserDetails.getUser();
+		userService.sendOrderConfirmationEmail(user,order, getSiteURL(request));
+		if (paymentMethod.equals("online")) {
+			return "redirect:/pay/" + order.getId();
+		} else {
+			return "user/Build";
+		}
+	}
+	public String getStatusText(int statusCode) {
+		switch (statusCode) {
+			case 0:
+				return "Chờ xác nhận";
+			case 1:
+				return "Đã duyệt";
+			case 2:
+				return "Đang giao";
+			case 3:
+				return "Giao hàng thành công";
+			default:
+				return "Unknown";
+		}
+	}
+	private String getSiteURL(HttpServletRequest request) {
+		String siteURL = request.getRequestURL().toString();
+		return siteURL.replace(request.getServletPath(), "");
 	}
 
 }

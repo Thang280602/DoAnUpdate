@@ -62,12 +62,13 @@ public class UserServiceIpml implements UserService {
     }
 
     @Override
-    public void processOAuthPostLogin(String username) {
+    public void processOAuthPostLogin(String username ,String email) {
         User existUser = userRepository1.getUserByUsername(username);
 
         if (existUser == null) {
             User newUser = new User();
-            newUser.setUserName(username);
+            newUser.setEmail(username);
+            newUser.setUserName(email);
             newUser.setProvider(User.Provider.GOOGLE);
             newUser.setEnabled(true);
             userRepository1.save(newUser);
@@ -101,7 +102,7 @@ public class UserServiceIpml implements UserService {
                 + "Please click the link below to verify your registration:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
                 + "Thank you,<br>"
-                + "Your company name.";
+                + "Đặng Hữu Thắng";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -133,11 +134,13 @@ public class UserServiceIpml implements UserService {
                 + "<ul>"
                 + "<li>Order Number: " + order.getId() + "</li>"
                 + "<li>Order Date: " + order.getCreateAt() + "</li>"
-                + "<li>Total Amount: " + order.getStatus() + "</li>"
+                + "<li>Order Address: " + order.getAddressShip() + "</li>"
+                + "<li>Order Telephone: " + order.getPhone() + "</li>"
+                + "<li> Total:  " + order.getTotalprice() + " $ " + "</li>"
                 + "</ul>"
                 + "For further inquiries or assistance, please contact us.<br>"
                 + "Thank you for choosing us,<br>"
-                + "Your company name.";
+                + "Đặng Hữu Thắng.";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
