@@ -11,94 +11,94 @@
 
 
     <!--Bootstrap -->
-    <link rel="stylesheet" th:href="@{../assetsuser/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{../../assetsuser/css/bootstrap.min.css}" type="text/css">
 
 
     <!--Custome Style -->
 
 
-    <link rel="stylesheet" th:href="@{../assetsuser/css/style.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{../../assetsuser/css/style.css}" type="text/css">
 
 
-    <link rel="stylesheet" th:href="@{../assetsuser/css/custom.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{../../assetsuser/css/custom.css}" type="text/css">
 
 
     <!--OWL Carousel slider-->
 
 
-    <link rel="stylesheet" th:href="@{../assetsuser/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{../../assetsuser/css/owl.carousel.css}" type="text/css">
 
 
-    <link rel="stylesheet" th:href="@{../assetsuser/css/owl.transitions.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{../../assetsuser/css/owl.transitions.css}" type="text/css">
 
 
     <!--slick-slider -->
 
 
-    <link th:href="@{../assetsuser/css/slick.css}" rel="stylesheet">
+    <link th:href="@{../../assetsuser/css/slick.css}" rel="stylesheet">
 
 
     <!--bootstrap-slider -->
 
 
-    <link th:href="@{../assetsuser/css/bootstrap-slider.min.css}" rel="stylesheet">
+    <link th:href="@{../../assetsuser/css/bootstrap-slider.min.css}" rel="stylesheet">
 
 
     <!--FontAwesome Font Style -->
 
 
-    <link th:href="@{../assetsuser/css/fontawesome.min.css}" rel="stylesheet">
+    <link th:href="@{../../assetsuser/css/fontawesome.min.css}" rel="stylesheet">
     <!-- SWITCHER -->
 
 
-    <link rel="stylesheet" id="switcher-css" type="text/css" th:href="@{../assetsuser/switcher/css/switcher.css}"
+    <link rel="stylesheet" id="switcher-css" type="text/css" th:href="@{../../assetsuser/switcher/css/switcher.css}"
           media="all"/>
 
 
-    <link rel="alternate stylesheet" type="text/css" th:href="@{../assetsuser/switcher/css/red.css}" title="red"
+    <link rel="alternate stylesheet" type="text/css" th:href="@{../../assetsuser/switcher/css/red.css}" title="red"
           media="all" data-default-color="true"/>
 
 
-    <link rel="alternate stylesheet" type="text/css" th:href="@{../assetsuser/switcher/css/orange.css}" title="orange"
+    <link rel="alternate stylesheet" type="text/css" th:href="@{../../assetsuser/switcher/css/orange.css}"
+          title="orange" media="all"/>
+
+
+    <link rel="alternate stylesheet" type="text/css" th:href="@{../../assetsuser/switcher/css/blue.css}" title="blue"
           media="all"/>
 
 
-    <link rel="alternate stylesheet" type="text/css" th:href="@{../assetsuser/switcher/css/blue.css}" title="blue"
+    <link rel="alternate stylesheet" type="text/css" th:href="@{../../assetsuser/switcher/css/pink.css}" title="pink"
           media="all"/>
 
 
-    <link rel="alternate stylesheet" type="text/css" th:href="@{../assetsuser/switcher/css/pink.css}" title="pink"
+    <link rel="alternate stylesheet" type="text/css" th:href="@{../../assetsuser/switcher/css/green.css}" title="green"
           media="all"/>
 
 
-    <link rel="alternate stylesheet" type="text/css" th:href="@{../assetsuser/switcher/css/green.css}" title="green"
-          media="all"/>
-
-
-    <link rel="alternate stylesheet" type="text/css" th:href="@{../assetsuser/switcher/css/purple.css}" title="purple"
-          media="all"/>
+    <link rel="alternate stylesheet" type="text/css" th:href="@{../../assetsuser/switcher/css/purple.css}"
+          title="purple" media="all"/>
 
 
     <!-- Fav and touch icons -->
 
 
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
-          th:href="@{../assetsuser/images/favicon-icon/apple-touch-icon-144-precomposed.png}">
+          th:href="@{../../assetsuser/images/favicon-icon/apple-touch-icon-144-precomposed.png}">
 
 
     <link rel="apple-touch-icon-precomposed" sizes="114x114"
-          th:href="@{../assetsuser/images/favicon-icon/apple-touch-icon-114-precomposed.html}">
+          th:href="@{../../assetsuser/images/favicon-icon/apple-touch-icon-114-precomposed.html}">
 
 
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
-          th:href="@{../assetsuser/images/favicon-icon/apple-touch-icon-72-precomposed.png}">
+          th:href="@{../../assetsuser/images/favicon-icon/apple-touch-icon-72-precomposed.png}">
 
 
     <link rel="apple-touch-icon-precomposed"
-          th:href="@{../assetsuser/images/favicon-icon/apple-touch-icon-57-precomposed.png}">
+          th:href="@{../../assetsuser/images/favicon-icon/apple-touch-icon-57-precomposed.png}">
 
 
-    <link rel="shortcut icon" th:href="@{../assetsuser/images/favicon-icon/favicon.png}">
+    <link rel="shortcut icon" th:href="@{../../assetsuser/images/favicon-icon/favicon.png}">
 
 
     <!-- Google-Font-->
@@ -123,6 +123,26 @@
 
 
     <![endif]-->
+    <style>
+        p {
+            margin: 2px;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .th, .td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .th {
+            background-color: #ccc;
+        }
+    </style>
 
 
 </head>
@@ -177,7 +197,8 @@
                 <div class="col-sm-3 col-md-2">
 
 
-                    <div class="logo "><a href=""><img th:src="@{../assetsuser/images/logo.png}" alt="image"/></a>
+                    <div class="logo "><a href=""><img th:src="@{../../assetsuser/images/logo.png}"
+                                                       alt="image"/></a>
                     </div>
 
 
@@ -240,8 +261,8 @@
                         </div>
 
 
-                        <div class="login_btn"><a th:href="@{/login}" class="btn btn-xs uppercase">Login /
-                            SignUp</a></div>
+                        <div class="login_btn"><a th:href="@{/login}" class="btn btn-xs uppercase"
+                        >Login / SignUp</a></div>
 
 
                     </div>
@@ -391,8 +412,8 @@
 
                                     <li><a class="dropdown-item" th:href="@{/user/profileSetting}">Profile Settings</a>
                                     </li>
-
                                     <li><a class="dropdown-item" th:href="@{/user/comment}">Comment</a></li>
+
 
                                     <li><a class="dropdown-item" th:href="@{/user/cardMy}">My Vehicles</a></li>
 
@@ -701,20 +722,270 @@
 
     </nav>
 
+    <div class="row header-row mobile">
+
+
+        <div class="col-10 col-md-8 right">
+
+
+            <div class="navbar-header">
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+                        aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i>
+                </button>
+
+
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+
+                <ul class="nav navbar-nav">
+
+
+                    <li><a href="#">Home</a></li>
+
+
+                    <li><a href="about-us.html">About Us</a></li>
+
+
+                    <li class="dropdown"><a href="#" id="dropdownMenuButton9" data-bs-toggle="dropdown"
+                                            aria-expanded="false">Inventory</a>
+
+
+                        <ul class="dropdown-menu">
+
+
+                            <li><a href="listing-grid.html">Grid Style</a></li>
+
+
+                            <li><a href="listing-classic.html">Classic Style</a></li>
+
+
+                            <li><a href="listing-detail.html">Detail Page Style 1</a></li>
+
+
+                            <li><a href="listing-detail-2.html">Detail Page Style 2</a></li>
+
+
+                        </ul>
+
+
+                    </li>
+
+
+                    <li class="dropdown"><a href="#" id="dropdownMenuButton10" data-bs-toggle="dropdown"
+                                            aria-expanded="false">Dealers</a>
+
+
+                        <ul class="dropdown-menu">
+
+
+                            <li><a href="dealers-list.html">List View</a></li>
+
+
+                            <li><a href="dealers-profile.html">Detail Page</a></li>
+
+
+                        </ul>
+
+
+                    </li>
+
+
+                    <li class="dropdown"><a href="#" id="dropdownMenuButton11" data-bs-toggle="dropdown"
+                                            aria-expanded="false">Pages</a>
+
+
+                        <ul class="dropdown-menu">
+
+
+                            <li><a href="services.html">Services</a></li>
+
+
+                            <li><a href="contact-us.html">Contact Us</a></li>
+
+
+                            <li><a href="compare.html">Compare Vehicles</a></li>
+
+
+                            <li><a href="faq.html">FAQ</a></li>
+
+
+                            <li><a href="404.html">404 Error</a></li>
+
+
+                            <li><a href="coming-soon.html">Coming Soon</a></li>
+
+
+                        </ul>
+
+
+                    </li>
+
+
+                    <li class="dropdown"><a href="#" id="dropdownMenuButton12" data-bs-toggle="dropdown"
+                                            aria-expanded="false">News</a>
+
+
+                        <ul class="dropdown-menu">
+
+
+                            <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+
+
+                            <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+
+
+                            <li><a href="blog-detail.html">Blog Detail</a></li>
+
+
+                        </ul>
+
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+            <div class="header_wrap">
+
+
+                <div class="user_login">
+
+
+                    <ul>
+
+
+                        <li class="dropdown dropdown-toggle"><a href="#" class="dropdown-toggle"
+                                                                id="dropdownMenuButton13" data-bs-toggle="dropdown"
+                                                                aria-expanded="false"><i
+                                class="fa fa-user-circle" aria-hidden="true"></i> John Anderson <i
+                                class="fa fa-angle-down" aria-hidden="true"></i></a>
+
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton13">
+
+
+                                <li><a class="dropdown-item" href="profile-settings.html">Profile
+                                    Settings</a></li>
+
+
+                                <li><a class="dropdown-item" href="my-vehicles.html">My Vehicles</a></li>
+
+
+                                <li><a class="dropdown-item" href="post-vehicle.html">Post a Vehicle</a>
+                                </li>
+
+
+                                <li><a class="dropdown-item" href="#">Sign Out</a></li>
+
+
+                            </ul>
+
+
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+
+                <div class="header_search">
+
+
+                    <div id="search_toggle1"><i class="fa fa-search" aria-hidden="true"></i></div>
+
+
+                    <form action="#" method="get" id="header-search-form1">
+
+
+                        <input type="text" placeholder="Search..." class="form-control">
+
+
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+
+
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="col-2 col-md-4 right">
+
+
+            <div class="user_login mobile">
+
+
+                <ul>
+
+
+                    <li class="dropdown"><a href="#" id="dropdownMenuButton15" data-bs-toggle="dropdown"
+                                            aria-expanded="false"><i class="fa fa-user-circle"
+                                                                     aria-hidden="true"></i></a>
+
+
+                        <ul class="dropdown-menu">
+
+
+                            <li><a href="profile-settings.html">Profile Settings</a></li>
+
+
+                            <li><a href="my-vehicles.html">My Vehicles</a></li>
+
+
+                            <li><a href="post-vehicle.html">Post a Vehicle</a></li>
+
+
+                            <li><a href="#">Sign Out</a></li>
+
+
+                        </ul>
+
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
 
     <!-- Navigation end -->
 
 
 </header>
-<section class="page-header listing_page">
+<section class="page-header contactus_page">
     <div class="container">
         <div class="page-header_wrap">
             <div class="page-heading">
-                <h1>Car Listing Grid</h1>
+                <h1>Contact Us</h1>
             </div>
             <ul class="coustom-breadcrumb">
                 <li><a href="#">Home</a></li>
-                <li>Car Listing</li>
+                <li>Contact Us</li>
             </ul>
         </div>
     </div>
@@ -723,257 +994,91 @@
 </section>
 <!-- /Page Header-->
 
-<!--Listing-grid-view-->
-<section class="listing-page">
+<!--Contact-us-->
+<section class="contact_us section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-md-9 col-md-push-3">
-                <div class="mobile_search">
-                    <div class="sidebar_widget">
-                        <div class="widget_heading">
-                            <h5><i class="fa fa-filter" aria-hidden="true"></i> Find Your Dream Car </h5>
-                        </div>
-                        <div class="sidebar_filter">
-                            <form action="#" method="get">
-                                <div class="form-group select">
-                                    <select class="form-control">
-                                        <option>Select Location</option>
-                                        <option>Location 1</option>
-                                        <option>Location 2</option>
-                                        <option>Location 3</option>
-                                        <option>Location 4</option>
-                                    </select>
-                                </div>
-                                <div class="form-group select">
-                                    <select class="form-control">
-                                        <option>Select Brand</option>
-                                        <option>Brand 1</option>
-                                        <option>Brand 2</option>
-                                        <option>Brand 3</option>
-                                        <option>Brand 4</option>
-                                    </select>
-                                </div>
-                                <div class="form-group select">
-                                    <select class="form-control">
-                                        <option>Select Model</option>
-                                        <option>Series 1</option>
-                                        <option>Series 2</option>
-                                        <option>Series 3</option>
-                                        <option>Series 4</option>
-                                    </select>
-                                </div>
-                                <div class="form-group select">
-                                    <select class="form-control">
-                                        <option>Year of Model</option>
-                                        <option>2023</option>
-                                        <option>2022</option>
-                                        <option>2021</option>
-                                        <option>2020</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label">Price Range ($)</label>
-                                    <input id="price_range1" type="text" class="span2" value="" data-slider-min="50"
-                                           data-slider-max="6000" data-slider-step="5"
-                                           data-slider-value="[1000,5000]"/>
-                                </div>
-                                <div class="form-group select">
-                                    <select class="form-control">
-                                        <option>Type of Car</option>
-                                        <option>New Car</option>
-                                        <option>Used Car</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-block"><i class="fa fa-search"
-                                                                                   aria-hidden="true"></i> Search Car
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+            <div class="" style="display: flex; justify-content: center;">
+                <div class="" style="">
+                    <div class="" style="display: flex; justify-content: center;font-weight: bold; font-size: 40px">Shop
+                        CarForYou car sales shop
                     </div>
-                </div>
-                <div class="result-sorting-wrapper">
-                    <div class="result-sorting-by">
-                        <div style="display: flex;">
-                            <div>
-                                <p>Sort by:</p>
-                            </div>
-                            <div class="abcd">
-
-                                <form method="GET" th:action="@{/user/ListingClassic/Search}"
-                                      enctype="multipart/form-data">
-                                    <div style="display: flex;">
-                                        <div class="form-group select sorting-select">
-                                            <select class="form-control" name="sortOrder" id="sortOrder">
-                                                <option value="asc">Price (low to high)</option>
-                                                <option value="desc">Price (high to low)</option>
-                                                <option value="new">Newest Product</option>
-                                                <option value="all">All products</option>
-                                            </select>
-                                        </div>
-                                        <div><button type="submit" style="border: none;color: red ; margin-left: 5%"
-                                        ><i
-                                                class="fa fa-search"></i></button></div>
-                                    </div>
-                                </form>
-
-
-                            </div>
-                        </div>
+                    <div class="" style="margin-top: 5px; text-align: center">
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 grid_listing" th:each="pro:${product}">
-                        <div class="product-listing-m gray-bg">
-                            <div class="product-listing-img"><a th:href="@{/user/detail/{id}(id=${pro.id})}"><img
-                                    th:src="@{'/uploads/'+${pro.image}}"
-                                    class="img-fluid" alt="image"/> </a>
-                                <div class="label_icon" th:text="${pro.category.categoryName}"></div>
-                                <div class="compare_item">
-                                    <div class="checkbox">
-                                        <input type="checkbox" value="" id="compare10">
-                                        <label for="compare10">Compare</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-listing-content">
-                                <h5><a href="#" th:text="${pro.productName}"> </a></h5>
-                                <p class="list-price" th:text="'$'+${pro.price}"></p>
-                                <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"
-                                                                   th:text="${pro.productAddress}"></i> </span></div>
-                                <ul class="features_list">
-                                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                                    <li th:text="'Model : '+${pro.models}"><i class="fa fa-calendar"
-                                                                              aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="" style="margin-top: 5px; text-align: center">
+                        <p>
+                            SDT: 0794070559
+                        </p>
                     </div>
-
-
-                </div>
-                <div class="pagination">
-                    <ul>
-                        <li th:if="${currentPage>1}"><a th:href="@{'?pageNo='+${currentPage-1}}">«</a></li>
-                        <li th:each="i:${#numbers.sequence(1,totalPage)}"
-                            th:classappend="${currentPage == i ? 'active':''}"><a th:href="@{ '?pageNo='+${i}}"
-                                                                                  th:text="${i}"></a></li>
-                        <li th:if="${currentPage<totalPage}"><a th:href="@{'?pageNo='+${currentPage+1}}">»</a></li>
-                    </ul>
+                    <div class="" style="margin-top: 10px;margin-left: 10px; display: flex; justify-content: center">
+                        <p th:text="${'Mã hóa đơn: '+ order.id}"></p>
+                        <p style="margin-left: 30px" th:text="'Ngày tạo: ' + ${ order.getCreateAt()}"></p>
+                        <p style="margin-left: 60px" th:text="'Status: ' + ${checkstatus}"></p>
+                    </div>
                 </div>
             </div>
-
-            <!--Side-Bar-->
-            <aside class="col-md-3 col-md-pull-9">
-                <div class="sidebar_widget sidebar_search_wrap">
-                    <div class="widget_heading">
-                        <h5><i class="fa fa-filter" aria-hidden="true"></i> Find Your Dream Car </h5>
-                    </div>
-                    <div class="sidebar_filter">
-                        <form th:action="@{/user/fillProduct1}" method="post" th:object="${searchModel}">
-                            <div class="form-group select">
-                                <div class="form-group select">
-                                    <select class="form-control" name="categoryName">
-
-
-                                        <option th:each="cate1:${listCate}" th:value="${cate1.categoryName}"><span
-                                                th:text="${cate1.categoryName}"></span></option>
-
-
-                                    </select>
-                                </div>
-                                <div class="form-group select">
-                                    <select class="form-control" name="productPrice">
-
-                                        <option value="10000-30000">Price:$10000-$30000</option>
-
-
-                                        <option value="30000-50000">Price:$30000-$50000</option>
-
-
-                                        <option value="50000-70000">Price:$50000-$70000</option>
-
-
-                                        <option value="70000-100000">Price:$70000-$100000</option>
-
-
-                                    </select>
-                                </div>
-                                <div class="form-group select">
-
-                                    <select class="form-control" name="productAddress">
-
-
-                                        <option th:each="address:${productAddress}" th:value="${address}"
-                                                th:text="'Porcelain : '+${address}"></option>
-
-
-                                    </select>
-                                </div>
-                                <div class="form-group select">
-                                    <select class="form-control" name="model">
-
-
-                                        <option th:each="model1:${model}" th:value="${model1}"
-                                                th:text="'Model : '+${model1}"></option>
-
-
-                                    </select>
-                                </div>
-
-                                <div class="form-group select">
-                                    <select class="form-control" name="sortId">
-
-
-                                        <option value="ASC">Selling time : New to Old</option>
-
-
-                                        <option value="DESC">Selling time : Old to New</option>
-
-
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-block"><i class="fa fa-search"
-                                                                                   aria-hidden="true"></i> Search Car
-                                    </button>
-                                </div>
-                        </form>
+            <div class=""
+                 style="padding: 20px 10px;border-top-style: dashed; border-width: 1px; border-color: rgb(0, 0, 0);">
+                <div class="">
+                    <div class="" style="margin-left: 5px; ">
+                        <p th:text="${'Khách hàng: ' +  order.getUser().fullName}"></p>
+                        <p th:text="${'Số điện thoại: '+order.getUser().getTelephone()}"></p>
+                        <p th:text="${'Địa chỉ: '+  order.getAddressShip() }"></p>
                     </div>
                 </div>
-        </div>
-        <div class="sidebar_widget">
-            <div class="widget_heading">
-                <h5><i class="fa fa-car" aria-hidden="true"></i> Recently Listed Cars</h5>
             </div>
-            <div class="recent_addedcars">
-                <ul>
-                    <li class="gray-bg" th:each="pro:${product}">
-                        <div class="recent_post_img"><a th:href="@{/user/detail/{id}(id=${pro.id})}"><img
-                                th:src="@{'/uploads/'+${pro.image}}"
-                                alt="image"></a></div>
-                        <div class="recent_post_title"><a th:href="@{/user/detail/{id}(id=${pro.id})}"
-                                                          th:text="${pro.productName}"></a>
-                            <p class="widget_price" th:text="'$'+${pro.price}"></p>
-                        </div>
-                    </li>
-
-                </ul>
+            <div style="padding: 20px 10px;border-top-style: dashed; border-width: 1px; border-color: rgb(0, 0, 0);">
+                <div class="" style="margin-right: 20px;">
+                    <p style="font-size: 18px; font-weight: 800; margin-bottom: 30px">Biên Lai
+                    </p>
+                    <table class="table " style="width: 100%">
+                        <thead>
+                        <td class="th"><strong>Stt</strong></td>
+                        <td class="th"><strong>Tên sản phẩm</strong></td>
+                        <td class="th"><strong>Số lượng</strong></td>
+                        <td class="th"><strong>Giá</strong></td>
+                        <td class="th"><strong>Tổng</strong></td>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="item,index : ${orderDetail}">
+                            <tr>
+                                <td class="td" th:text="${index.index  + 1}">BS-200</td>
+                                <td class="td" th:text="${item.getProduct().getProductName()}">BS-200</td>
+                                <td class="td" th:text="${item.getQuantity()}">1</td>
+                                <td class="td" th:text="${item.getProduct().getPrice()} +' $'"></td>
+                                <td class="td"
+                                    th:text="${item.getQuantity() * item.getProduct().getPrice()} + ' $'    "></td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td class="thick-line "><strong>Tổng Tiền hàng:</strong></td>
+                            <td class="thick-line text-end" float="right" th:text="${total} + ' $'"></td>
+                        </tr>
+                        <tr>
+                            <td class="thick-line"><strong>Phí Ship:</strong></td>
+                            <td class="thick-line  text-end" float="right"><span>Free Ship</span></td>
+                        </tr>
+                        <tr>
+                            <td class="thick-line "><strong>Tổng thanh toán:</strong></td>
+                            <td class="no-border  text-end" float="right" th:text="${total}">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="padding: 20px 10px;border-top-style: dashed; border-width: 1px; border-color: rgb(0, 0, 0);">
+                <div style="font-size: 18px;margin-top: 20px; font-weight: 700; text-align: center; width: 100%">Thank you for visiting and purchasing products from the store :
+                    <a th:href="@{/}"><span style="color: orangered">Return shop</span> </a>
+                </div>
             </div>
         </div>
-        </aside>
-        <!--/Side-Bar-->
-    </div>
     </div>
 </section>
-<!--/Listing-grid-view-->
-
-<!--Brands-->
-
 
 <!--Footer -->
 <footer>
@@ -1158,7 +1263,6 @@
     </div>
 </div>
 <!--/SignUp-Form -->
-
 <!--Forgot-password-Form -->
 <div class="modal fade" id="forgotpassword">
     <div class="modal-dialog" role="document">
@@ -1197,38 +1301,38 @@
 <!--/Forgot-password-Form -->
 
 <!-- Scripts -->
-<script th:src="@{../assetsuser/js/jquery.min.js}"></script>
+<script th:src="@{../../assetsuser/js/jquery.min.js}"></script>
 
 
-<script th:src="@{../assetsuser/js/popper.min.js}"></script>
+<script th:src="@{../../assetsuser/js/popper.min.js}"></script>
 
 
-<script th:src="@{../assetsuser/js/bootstrap.min.js}"></script>
+<script th:src="@{../../assetsuser/js/bootstrap.min.js}"></script>
 
 
-<script th:src="@{../assetsuser/js/interface.js}"></script>
+<script th:src="@{../../assetsuser/js/interface.js}"></script>
 
 
-<script th:src="@{../assetsuser/js/31f5977fdc.js}"></script>
+<script th:src="@{../../assetsuser/js/31f5977fdc.js}"></script>
 
 
 <!--Switcher-->
 
 
-<script th:src="@{../assetsuser/switcher/js/switcher.js}"></script>
+<script th:src="@{../../assetsuser/switcher/js/switcher.js}"></script>
 
 
 <!--bootstrap-slider-JS-->
 
 
-<script th:src="@{../assetsuser/js/bootstrap-slider.min.js}"></script>
+<script th:src="@{../../assetsuser/js/bootstrap-slider.min.js}"></script>
 
 
 <!--Slider-JS-->
 
 
-<script th:src="@{../assetsuser/js/slick.min.js}"></script>
-<script th:src="@{../assetsuser/js/owl.carousel.min.js}"></script>
+<script th:src="@{../../assetsuser/js/slick.min.js}"></script>
+<script th:src="@{../../assetsuser/js/owl.carousel.min.js}"></script>
 
 </body>
 

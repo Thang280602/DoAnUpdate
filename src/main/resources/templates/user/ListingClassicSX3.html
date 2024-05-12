@@ -968,7 +968,7 @@
 	<section class="listing-page">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-9 col-md-push-3">
+				<div class="col-md-12 col-md-push-3">
 					<div class="mobile_search">
 						<div class="sidebar_widget">
 							<div class="widget_heading">
@@ -1040,10 +1040,11 @@
 								<div>
 									<p>Sort by:</p>
 								</div>
-								<div>
-									<div style="display: flex;">
-										<form method="GET" th:action="@{/user/ListingClassic/Search}"
-											enctype="multipart/form-data">
+								<div class="abcd">
+
+									<form method="GET" th:action="@{/user/ListingClassic/Search}"
+										  enctype="multipart/form-data">
+										<div style="display: flex;">
 											<div class="form-group select sorting-select">
 												<select class="form-control" name="sortOrder" id="sortOrder">
 													<option value="asc">Price (low to high)</option>
@@ -1052,13 +1053,15 @@
 													<option value="all">All products</option>
 												</select>
 											</div>
-									</div>
-									<div style="margin-top: 15px; margin-left: 40px;">
-										<button type="submit" class="btn btn-default"><i
-												class="fa fa-search"></i></button>
-									</div>
+											<div><button type="submit" style="border: none;color: red ; margin-left: 5%"
+											><i
+													class="fa fa-search"></i></button></div>
+										</div>
 									</form>
+
+
 								</div>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -1097,106 +1100,7 @@
 				</div>
 
 				<!--Side-Bar-->
-				<aside class="col-md-3 col-md-pull-9">
-					<div class="sidebar_widget sidebar_search_wrap">
-						<div class="widget_heading">
-							<h5><i class="fa fa-filter" aria-hidden="true"></i> Find Your Dream Car </h5>
-						</div>
-						<div class="sidebar_filter">
-							<form th:action="@{/user/fillProduct1}" method="post" th:object="${searchModel}">
-								<div class="form-group select">
-									<div class="form-group select">
-										<select class="form-control" name="categoryName">
 
-
-
-											<option th:each="cate1:${listCate}" th:value="${cate1.categoryName}"><span
-													th:text="${cate1.categoryName}"></span></option>
-
-
-
-										</select>
-									</div>
-									<div class="form-group select">
-										<select class="form-control" name="productPrice">
-
-											<option value="10000-30000">Price:$10000-$30000</option>
-
-
-
-											<option value="30000-50000">Price:$30000-$50000</option>
-
-
-
-											<option value="50000-70000">Price:$50000-$70000</option>
-
-
-
-											<option value="70000-100000">Price:$70000-$100000</option>
-
-
-
-										</select>
-									</div>
-									<div class="form-group select">
-
-										<select class="form-control" name="productAddress">
-
-
-
-											<option th:each="address:${productAddress}" th:value="${address}"
-												th:text="'Porcelain : '+${address}"></option>
-
-
-
-
-
-
-
-										</select>
-									</div>
-									<div class="form-group select">
-										<select class="form-control" name="model">
-
-
-
-											<option th:each="model1:${model}" th:value="${model1}"
-												th:text="'Model : '+${model1}"></option>
-
-
-
-
-
-
-
-										</select>
-									</div>
-
-									<div class="form-group select">
-										<select class="form-control" name="sortId">
-
-
-
-											<option value="ASC">Selling time : New to Old</option>
-
-
-
-											<option value="DESC">Selling time : Old to New</option>
-
-
-
-
-
-
-										</select>
-									</div>
-									<div class="form-group">
-										<button type="submit" class="btn btn-block"><i class="fa fa-search"
-												aria-hidden="true"></i> Search Car</button>
-									</div>
-							</form>
-						</div>
-					</div>
 			</div>
 			<div class="sidebar_widget sell_car_quote">
 				<div class="white-text div_zindex text-center">

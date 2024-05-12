@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
@@ -117,6 +114,21 @@ public class OrderController {
 	private String getSiteURL(HttpServletRequest request) {
 		String siteURL = request.getRequestURL().toString();
 		return siteURL.replace(request.getServletPath(), "");
+	}
+	@RequestMapping("/bill2/{id}")
+	public String Build1(@PathVariable("id") Integer id , Model model){
+		Order order = this.orderSevice.findById(id);
+
+		List<OrderDetail> orderDetail = this.orderDetailSevice.getByOrderId(order);
+		Double total = 0.0;
+		for(OrderDetail orderDetail1: orderDetail){
+			total+=orderDetail1.getPrice();
+		}
+		model.addAttribute("total",total);
+		model.addAttribute("checkstatus",getStatusText(order.getStatus()));
+		model.addAttribute("order",order);
+		model.addAttribute("orderDetail",orderDetail);
+		return "/user/bill2";
 	}
 
 }

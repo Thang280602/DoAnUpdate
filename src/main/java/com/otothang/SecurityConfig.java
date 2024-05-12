@@ -84,24 +84,24 @@ public class SecurityConfig {
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
                             response.sendRedirect("/access-denied");
                         })
-                )
-                .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/login")
-                        .userInfoEndpoint(userInfo -> userInfo
-                                .userService(oauthUserService)
-                                .and()
-                                .successHandler(new AuthenticationSuccessHandler() {
-                                                    @Override
-                                                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                                                        Authentication authentication) throws IOException, ServletException {
-                                                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-                                                        userService.processOAuthPostLogin(oauthUser.getEmail() ,oauthUser.getName());
-                                                        response.sendRedirect("/");
-                                                    }
-                                                }
-                                )
-                        )
                 );
+//                .oauth2Login(oauth2 -> oauth2
+//                        .loginPage("/login")
+//                        .userInfoEndpoint(userInfo -> userInfo
+//                                .userService(oauthUserService)
+//                                .and()
+//                                .successHandler(new AuthenticationSuccessHandler() {
+//                                                    @Override
+//                                                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+//                                                                                        Authentication authentication) throws IOException, ServletException {
+//                                                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+//                                                        userService.processOAuthPostLogin(oauthUser.getEmail() ,oauthUser.getName());
+//                                                        response.sendRedirect("/");
+//                                                    }
+//                                                }
+//                                )
+//                        )
+//                );
 
         return http.build();
     }

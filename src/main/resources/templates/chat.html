@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 <head>
-    <title>Spring Boot WebSocket</title>
+    <title>Car For You</title>
     <link rel="stylesheet" th:href="@{/css/chatmain.css}" />
 
     <!-- https://cdnjs.com/libraries/sockjs-client -->
@@ -10,15 +10,16 @@
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
 </head>
-<body>
+<body style="width: 110%">
 <div id="chat-container">
     <div class="chat-header">
-        <div class="user-container" th:object="${user}">
-            <span id="username"  th:utext="${user.userName}"></span>
+        <div class="user-container" th:object="${user}" style="display:flex;justify-content: space-between ;width:100% " >
+            <span id="username"  th:utext="'Account name: ' + ${user.userName}"></span>
             <a th:href="@{/}">Exits</a>
         </div>
-        <h3>Spring WebSocket Chat Demo</h3>
-    </div>
+
+    </div><br>
+    <h3 style="text-align: center">Let's chat and text the shop and everyone now</h3>
 
     <hr/>
 

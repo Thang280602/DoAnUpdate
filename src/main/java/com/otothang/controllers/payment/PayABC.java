@@ -8,6 +8,7 @@ import com.otothang.models.Order;
 import com.otothang.models.OrderDetail;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,7 +63,9 @@ public class PayABC {
         vnp_Params.put("vnp_OrderType", orderType);
 
         vnp_Params.put("vnp_Locale", "vn");
-        vnp_Params.put("vnp_ReturnUrl", PayConfig.vnp_ReturnUrl);
+        System.out.println(order.getId());
+        vnp_Params.put("vnp_ReturnUrl", PayConfig.vnp_ReturnUrl+order.getId());
+        System.out.println(PayConfig.vnp_ReturnUrl+order.getId());
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
@@ -107,12 +110,13 @@ public class PayABC {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/success" +order.getId();
+        return PayConfig.vnp_PayUrl+order.getId();
     }
-    @RequestMapping("/success/{id}")
-    public String Build(@PathVariable("id") Integer id){
-        return "/index";
-    }
+//    @RequestMapping("/success/{id}")
+//    public String Build(@PathVariable("id") Integer id){
+//        return "/index";
+//    }
+
     private BigDecimal calculateTotalAmount(List<OrderDetail> orderDetails) {
         // Tính tổng số tiền của các đơn hàng
         BigDecimal total = BigDecimal.ZERO;

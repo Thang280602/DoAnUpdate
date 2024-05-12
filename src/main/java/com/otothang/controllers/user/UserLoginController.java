@@ -3,6 +3,7 @@ package com.otothang.controllers.user;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import com.otothang.models.*;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +11,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.otothang.Service.BlogService;
 import com.otothang.Service.CategorySevice;
 import com.otothang.Service.UserService;
-import com.otothang.models.Blog;
-import com.otothang.models.Category;
-import com.otothang.models.User;
 
 @Controller
 public class UserLoginController {
@@ -62,6 +57,7 @@ public class UserLoginController {
 			return "/user/Login";
 		}
 	}
+
 	private String getSiteURL(HttpServletRequest request) {
 		String siteURL = request.getRequestURL().toString();
 		return siteURL.replace(request.getServletPath(), "");
